@@ -3,6 +3,8 @@ import { Stack } from '@fluentui/react';
 import Header from './components/Header';
 import TodoList from "./components/TodoList";
 import Footer from "./components/Footer";
+import { initializeIcons } from '@uifabric/icons';
+initializeIcons();
 
 const App: React.FC = () => {
   return (
