@@ -3,20 +3,21 @@ import { Stack, Checkbox, IconButton, TextField, DefaultButton } from "@fluentui
 
 interface ITodoListItem {
   id: number
+  label: string
 }
 
-const TodoListItem = (props: ITodoListItem) => {
+const TodoListItem = ({label}: ITodoListItem) => {
   const editing: boolean = false;
   return (
     <Stack horizontal verticalAlign="center" horizontalAlign="space-between">
       {!editing && (
-        <>
-          <Checkbox label="label" checked={true} onChange={() => console.log(123)} />
+        <React.Fragment>
+          <Checkbox label={label} checked={true} onChange={() => console.log(123)} />
           <div>
             <IconButton iconProps={{ iconName: 'Edit' }} onClick={() => console.log(123)} />
             <IconButton iconProps={{ iconName: 'Cancel' }} onClick={() => console.log(123)} />
           </div>
-        </>
+        </React.Fragment>
       )}
 
       {editing && (

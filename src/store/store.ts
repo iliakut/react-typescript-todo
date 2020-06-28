@@ -15,4 +15,6 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept('./reducers/rootReducer', () => store.replaceReducer(rootReducer))
 }
 
+export type StoreType  = ReturnType<typeof rootReducer>
+
 export default store;

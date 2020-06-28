@@ -13,7 +13,8 @@ const Header: React.FC = () => {
       id: Date.now(),
       label: value,
     };
-    dispatch(onAddTodo(newItem))
+    dispatch(onAddTodo(newItem));
+    setValue('');
   };
 
   const onChangeInput = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void => {
