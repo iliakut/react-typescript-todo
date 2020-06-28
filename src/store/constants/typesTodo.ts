@@ -1,6 +1,7 @@
 // actionTypes
 export const ADD_TODO_ITEM: string = 'ADD_TODO_ITEM';
 export const EDIT_LABEL_TODO_ITEM: string = 'EDIT_LABEL_TODO_ITEM';
+export const DELETE_TODO_ITEM: string = 'DELETE_TODO_ITEM';
 
 // action interfaces
 interface IonAddTodo {
@@ -9,12 +10,13 @@ interface IonAddTodo {
 }
 interface IonEditLabelTodo {
   type: typeof EDIT_LABEL_TODO_ITEM,
-  payload: {
-    id: number,
-    label: string
-  },
+  payload: ItodoItem
 }
-export type types = IonAddTodo | IonEditLabelTodo;
+interface IdeleteTodoItem {
+  type: typeof DELETE_TODO_ITEM,
+  payload: any // TODO разобраться как сделать другой payload
+}
+export type types = IonAddTodo | IonEditLabelTodo | IdeleteTodoItem;
 
 // state types
 export interface ItodoItem {

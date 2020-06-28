@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Stack, Checkbox, IconButton, TextField, DefaultButton } from "@fluentui/react";
 import {useDispatch} from "react-redux";
-import {onEditLabelTodo} from "../store/actions/todoActions";
+import {onDeleteTodoItem, onEditLabelTodo} from "../store/actions/todoActions";
 
 interface ITodoListItem {
   id: number
@@ -30,6 +30,10 @@ const TodoListItem = ({id, label}: ITodoListItem) => {
     setNewValue('');
   };
 
+  const onClickDelete = (): void => {
+    dispatch(onDeleteTodoItem(id));
+  };
+
   return (
     <Stack horizontal verticalAlign="center" horizontalAlign="space-between">
       {!editing && (
@@ -37,7 +41,7 @@ const TodoListItem = ({id, label}: ITodoListItem) => {
           <Checkbox label={label} checked={true} onChange={() => console.log(11)} />
           <div>
             <IconButton iconProps={{ iconName: 'Edit' }} onClick={onClickEdit} />
-            <IconButton iconProps={{ iconName: 'Cancel' }} onClick={() => console.log(123)} />
+            <IconButton iconProps={{ iconName: 'Cancel' }} onClick={onClickDelete} />
           </div>
         </React.Fragment>
       )}

@@ -19,9 +19,20 @@ export default (state = initialState, action: types.types): types.Itodo => {
         const item = state.todos[index];
         const newItem = {...item};
         newItem.label = action.payload.label;
-
         const newTodos = [...state.todos];
         newTodos[index] = newItem;
+        return {
+          ...state,
+          todos: newTodos
+        }
+      }
+      return state;
+    }
+    case types.DELETE_TODO_ITEM: {
+      const index = state.todos.findIndex(item => item.id === action.payload.id);
+      const newTodos = [...state.todos];
+      newTodos.splice(index, 1);
+      if (index >= 0) {
         return {
           ...state,
           todos: newTodos
