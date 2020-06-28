@@ -14,11 +14,20 @@ const TodoListItem = ({id, label}: ITodoListItem) => {
   const [newValue, setNewValue] = useState<string>('');
 
   const onClickEdit = (): void => {
-    console.log(999)
+    setNewValue(label);
+    setEditing(true);
+  };
+
+  const onChangeNewValue =  (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void => {
+    if (newValue) {
+      setNewValue(newValue);
+    }
   };
 
   const onSave = (): void => {
-    dispatch(onEditLabelTodo(id, 'adsa'));
+    dispatch(onEditLabelTodo(id, newValue));
+    setEditing(false);
+    setNewValue('');
   };
 
   return (
@@ -35,9 +44,9 @@ const TodoListItem = ({id, label}: ITodoListItem) => {
 
       {editing && (
         <Stack.Item grow>
-          <Stack horizontal gap={10}>
+          <Stack horizontal tokens={{ childrenGap: 10 }}>
             <Stack.Item grow>
-              <TextField value={label} onChange={() => console.log(123)} />
+              <TextField value={newValue} onChange={onChangeNewValue} />
             </Stack.Item>
             <DefaultButton onClick={onSave}>Save</DefaultButton>
           </Stack>
@@ -47,4 +56,4 @@ const TodoListItem = ({id, label}: ITodoListItem) => {
   );
 };
 
-export default TodoListItem;
+export default React.memo(TodoListItem);

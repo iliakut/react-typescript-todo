@@ -13,7 +13,21 @@ export default (state = initialState, action: types.types): types.Itodo => {
       }
     }
     case types.EDIT_LABEL_TODO_ITEM: {
-      console.log(action.payload.id, action.payload.label)
+      const index = state.todos.findIndex(item => item.id === action.payload.id);
+
+      if (index >= 0) {
+        const item = state.todos[index];
+        const newItem = {...item};
+        newItem.label = action.payload.label;
+
+        const newTodos = [...state.todos];
+        newTodos[index] = newItem;
+        return {
+          ...state,
+          todos: newTodos
+        }
+      }
+      return state;
     }
     default:
       return state;
