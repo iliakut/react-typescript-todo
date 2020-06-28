@@ -3,7 +3,7 @@ import {Stack} from "@fluentui/react";
 import TodoListItem from "./TodoListItem";
 import {useSelector} from "react-redux";
 import {StoreType} from "../store/store";
-import {ItodoItem} from "../store/constants/actionTypesTodo";
+import {ItodoItem} from "../store/constants/typesTodo";
 
 const TodoList = () => {
   const items: ItodoItem[] = useSelector((state: StoreType) => state.todoStore.todos);

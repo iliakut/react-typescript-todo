@@ -1,6 +1,14 @@
-import * as actionTypes from '../constants/actionTypesTodo';
+import * as typesTodo from '../constants/typesTodo';
 
-export const onAddTodo = (todoItem: actionTypes.ItodoItem): actionTypes.types => ({
-  type: actionTypes.ADD_TODO_ITEM,
+export const onAddTodo = (todoItem: typesTodo.ItodoItem): typesTodo.types => ({
+  type: typesTodo.ADD_TODO_ITEM,
   payload: todoItem
+});
+
+export const onEditLabelTodo = (id: number, label: string): typesTodo.types => ({
+  type: typesTodo.EDIT_LABEL_TODO_ITEM,
+  payload: {
+    id,
+    label
+  }
 });

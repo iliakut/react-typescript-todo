@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {Stack, Text, TextField, PrimaryButton, Pivot, PivotItem} from "@fluentui/react";
 import {onAddTodo} from '../store/actions/todoActions'
-import {ItodoItem} from "../store/constants/actionTypesTodo";
+import {ItodoItem} from "../store/constants/typesTodo";
 
 const Header: React.FC = () => {
   const [value, setValue] = useState<string>('');

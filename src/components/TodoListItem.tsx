@@ -1,20 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import { Stack, Checkbox, IconButton, TextField, DefaultButton } from "@fluentui/react";
+import {useDispatch} from "react-redux";
+import {onEditLabelTodo} from "../store/actions/todoActions";
 
 interface ITodoListItem {
   id: number
   label: string
 }
 
-const TodoListItem = ({label}: ITodoListItem) => {
-  const editing: boolean = false;
+const TodoListItem = ({id, label}: ITodoListItem) => {
+  const dispatch = useDispatch();
+  const [editing, setEditing] = useState<boolean>(false);
+  const [newValue, setNewValue] = useState<string>('');
+
+  const onClickEdit = (): void => {
+    console.log(999)
+  };
+
+  const onSave = (): void => {
+    dispatch(onEditLabelTodo(id, 'adsa'));
+  };
+
   return (
     <Stack horizontal verticalAlign="center" horizontalAlign="space-between">
       {!editing && (
         <React.Fragment>
-          <Checkbox label={label} checked={true} onChange={() => console.log(123)} />
+          <Checkbox label={label} checked={true} onChange={() => console.log(11)} />
           <div>
-            <IconButton iconProps={{ iconName: 'Edit' }} onClick={() => console.log(123)} />
+            <IconButton iconProps={{ iconName: 'Edit' }} onClick={onClickEdit} />
             <IconButton iconProps={{ iconName: 'Cancel' }} onClick={() => console.log(123)} />
           </div>
         </React.Fragment>
@@ -24,9 +37,9 @@ const TodoListItem = ({label}: ITodoListItem) => {
         <Stack.Item grow>
           <Stack horizontal gap={10}>
             <Stack.Item grow>
-              <TextField value={'label 2'} onChange={() => console.log(123)} />
+              <TextField value={label} onChange={() => console.log(123)} />
             </Stack.Item>
-            <DefaultButton onClick={() => console.log(123)}>Save</DefaultButton>
+            <DefaultButton onClick={onSave}>Save</DefaultButton>
           </Stack>
         </Stack.Item>
       )}
