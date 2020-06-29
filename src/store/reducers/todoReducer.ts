@@ -1,11 +1,11 @@
 import * as types from '../constants/typesTodo'
-import {ItodoItem} from "../constants/typesTodo";
+import {ItodoItem, Itodo} from "../constants/typesTodo";
 
 const initialState: types.Itodo = {
   todos: [],
 };
 
-export default (state = initialState, action: types.types): types.Itodo => {
+export default (state = initialState, action: types.types): Itodo => {
   switch (action.type) {
     case types.ADD_TODO_ITEM: {
       return {
@@ -16,11 +16,13 @@ export default (state = initialState, action: types.types): types.Itodo => {
     case types.EDIT_LABEL_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       if (index >= 0) {
-        const item = state.todos[index];
-        const newItem = {...item};
-        newItem.label = action.payload.label;
-        const newTodos = [...state.todos];
-        newTodos[index] = newItem;
+        const newTodos = changeArrElementParamByIndex(
+          index,
+          state.todos,
+          'label',
+          action.payload.label
+        );
+
         return {
           ...state,
           todos: newTodos
@@ -50,7 +52,12 @@ export default (state = initialState, action: types.types): types.Itodo => {
         newTodos[index] = newItem;
         return {
           ...state,
-          todos: newTodos
+          todos: changeArrElementParamByIndex(
+            index,
+            state.todos,
+            'completed',
+            action.payload.completed
+          )
         }
       }
       return state;
@@ -60,6 +67,23 @@ export default (state = initialState, action: types.types): types.Itodo => {
   }
 }
 
-const findIndex = (id: number, arr: ItodoItem[]) => {
+const findIndex = (id: number, arr: ItodoItem[]): number => {
   return arr.findIndex(item => item.id === id);
 };
+
+const changeArrElementParamByIndex = (
+    index: number,
+    arr: ItodoItem[],
+    paramName: 'completed' | 'label',
+    newParamValue: boolean | string,
+  ): ItodoItem[] => {
+    const item = arr[index];
+    console.log(item)
+    const newItem = {
+      ...item,
+      [paramName]: newParamValue
+    };
+    const newTodos = [...arr];
+    newTodos[index] = newItem;
+    return newTodos;
+  };
