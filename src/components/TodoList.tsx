@@ -15,6 +15,7 @@ const TodoList = () => {
           key={item.id}
           id={item.id}
           label={item.label}
+          completed={item.completed}
         />
       ))}
     </Stack>

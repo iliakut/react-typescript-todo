@@ -9,12 +9,15 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
 
   const onAddTodoItem = (): void => {
-    const newItem: ItodoItem = {
-      id: Date.now(),
-      label: value,
-    };
-    dispatch(onAddTodo(newItem));
-    setValue('');
+    if (value) {
+      const newItem: ItodoItem = {
+        id: Date.now(),
+        label: value,
+        completed: false
+      };
+      dispatch(onAddTodo(newItem));
+      setValue('');
+    }
   };
 
   const onChangeInput = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void => {
