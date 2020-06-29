@@ -26,6 +26,13 @@ const Header: React.FC = () => {
     }
   };
 
+  const onFilter = (item: PivotItem | undefined) => {
+    const newFilter = item?.props.headerText;
+    if (newFilter) {
+      // TODO dispatch filter
+    }
+  };
+
   return (
     <Stack tokens={{ childrenGap: 5 }}>
       <Stack horizontal horizontalAlign="center">
@@ -43,7 +50,7 @@ const Header: React.FC = () => {
         <PrimaryButton onClick={onAddTodoItem}>Add</PrimaryButton>
       </Stack>
 
-      <Pivot>
+      <Pivot onLinkClick={(event) => onFilter(event)}>
         <PivotItem headerText="all" />
         <PivotItem headerText="active" />
         <PivotItem headerText="completed" />
