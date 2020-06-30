@@ -3,6 +3,8 @@ import {useDispatch} from "react-redux";
 import {Stack, Text, TextField, PrimaryButton, Pivot, PivotItem} from "@fluentui/react";
 import {onAddTodo} from '../store/actions/todoActions'
 import {ItodoItem} from "../store/constants/typesTodo";
+import {onSetFilter} from "../store/actions/filterActions";
+import {FilterTypes} from "../store/constants/typesFilter";
 
 const Header: React.FC = () => {
   const [value, setValue] = useState<string>('');
@@ -31,7 +33,7 @@ const Header: React.FC = () => {
   const onFilter = (item: PivotItem | undefined) => {
     const newFilter = item?.props.headerText;
     if (newFilter) {
-      // TODO dispatch filter
+      dispatch(onSetFilter(newFilter as FilterTypes));
     }
   };
 

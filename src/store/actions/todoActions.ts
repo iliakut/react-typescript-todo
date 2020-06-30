@@ -1,6 +1,6 @@
 import * as typesTodo from '../constants/typesTodo';
 
-export const onAddTodo = (todoItem: typesTodo.ItodoItem):   typesTodo.types => ({
+export const onAddTodo = (todoItem: typesTodo.ItodoItem): typesTodo.types => ({
   type: typesTodo.ADD_TODO_ITEM,
   payload: todoItem
 });
