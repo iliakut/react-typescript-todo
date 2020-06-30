@@ -23,6 +23,8 @@ const Header: React.FC = () => {
   const onChangeInput = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string): void => {
     if (newValue) {
       setValue(newValue);
+    } else {
+      setValue('');
     }
   };
 
