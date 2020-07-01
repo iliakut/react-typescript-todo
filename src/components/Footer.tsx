@@ -17,7 +17,7 @@ const Footer = () => {
       return (newItems.length === oldItems.length) || isDifferent;
     });
 
-  const length = items.length;
+  const length = items.length; // TODO calculate left not completed
 
   return (
     <Stack horizontal horizontalAlign="space-between" verticalAlign="center">
