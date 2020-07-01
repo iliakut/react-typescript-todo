@@ -18,7 +18,7 @@ interface IonEditLabelTodo {
 }
 interface IdeleteTodoItem {
   type: typeof DELETE_TODO_ITEM,
-  payload: any // TODO разобраться как сделать другой payload
+  payload: number
 }
 interface IsetCompletedTodoItem {
   type: typeof SET_COMPLETED_TODO_ITEM,

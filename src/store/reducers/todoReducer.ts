@@ -1,11 +1,12 @@
-import * as types from '../constants/typesTodo'
+import * as types from "../constants/typesTodo";
+import {actionTypes} from "../actions/todoActions";
 import {ItodoItem, Itodo} from "../constants/typesTodo";
 
 const initialState: types.Itodo = {
   todos: [],
 };
 
-export default (state = initialState, action: types.types): Itodo => {
+export default (state = initialState, action: actionTypes): Itodo => {
   switch (action.type) {
     case types.ADD_TODO_ITEM: {
       return {

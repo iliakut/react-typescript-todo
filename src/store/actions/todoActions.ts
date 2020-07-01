@@ -1,11 +1,11 @@
 import * as typesTodo from '../constants/typesTodo';
 
-export const onAddTodo = (todoItem: typesTodo.ItodoItem): typesTodo.types => ({
+export const onAddTodo = (todoItem: typesTodo.ItodoItem) => ({
   type: typesTodo.ADD_TODO_ITEM,
   payload: todoItem
 });
 
-export const onEditLabelTodo = (id: number, label: string): typesTodo.types => ({
+export const onEditLabelTodo = (id: number, label: string) => ({
   type: typesTodo.EDIT_LABEL_TODO_ITEM,
   payload: {
     id,
@@ -13,7 +13,7 @@ export const onEditLabelTodo = (id: number, label: string): typesTodo.types => (
   }
 });
 
-export const setCompletedTodoItem = (id: number, completed: boolean): typesTodo.types => ({
+export const setCompletedTodoItem = (id: number, completed: boolean) => ({
   type: typesTodo.SET_COMPLETED_TODO_ITEM,
   payload: {
     id,
@@ -21,9 +21,15 @@ export const setCompletedTodoItem = (id: number, completed: boolean): typesTodo.
   }
 });
 
-export const onDeleteTodoItem = (id: number):   typesTodo.types => ({
+export const onDeleteTodoItem = (id: number) => ({
   type: typesTodo.DELETE_TODO_ITEM,
   payload: {
     id
   }
 });
+
+export type actionTypes =
+  ReturnType<typeof onAddTodo> |
+  ReturnType<typeof onEditLabelTodo> |
+  ReturnType<typeof setCompletedTodoItem> |
+  ReturnType<typeof onDeleteTodoItem>
