@@ -8,7 +8,13 @@ const Footer = () => {
   const items: ItodoItem[] = useSelector(
     (state: StoreType) => state.todoStore.todos,
     (newItems, oldItems): boolean => {
-      return newItems.length === oldItems.length;
+      let isDifferent = false;
+      oldItems.forEach((item, index) => {
+        if(item.completed === newItems[index].completed) {
+          isDifferent = true;
+        }
+      });
+      return (newItems.length === oldItems.length) || isDifferent;
     });
 
   const length = items.length;
