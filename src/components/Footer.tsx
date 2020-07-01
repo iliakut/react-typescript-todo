@@ -8,16 +8,13 @@ const Footer = () => {
   const items: ItodoItem[] = useSelector(
     (state: StoreType) => state.todoStore.todos,
     (newItems, oldItems): boolean => {
-      let isDifferent = false;
-      oldItems.forEach((item, index) => {
-        if(item.completed === newItems[index].completed) {
-          isDifferent = true;
-        }
+      const isDifferent = oldItems.some((item, index) => {
+        return item.completed !== newItems[index].completed
       });
-      return (newItems.length === oldItems.length) || isDifferent;
+      return (newItems.length === oldItems.length) && !isDifferent;
     });
 
-  const length = items.length; // TODO calculate left not completed
+  const length = items.filter(item => !item.completed).length;
 
   return (
     <Stack horizontal horizontalAlign="space-between" verticalAlign="center">
