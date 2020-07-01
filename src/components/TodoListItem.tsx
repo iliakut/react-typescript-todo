@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Stack, Checkbox, IconButton, TextField, DefaultButton } from "@fluentui/react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {onDeleteTodoItem, onEditLabelTodo, setCompletedTodoItem} from "../store/actions/todoActions";
 import {ItodoItem} from "../store/constants/typesTodo";
 
