@@ -1,8 +1,8 @@
 // actionTypes
-export const ADD_TODO_ITEM: string = 'ADD_TODO_ITEM';
-export const EDIT_LABEL_TODO_ITEM: string = 'EDIT_LABEL_TODO_ITEM';
-export const DELETE_TODO_ITEM: string = 'DELETE_TODO_ITEM';
-export const SET_COMPLETED_TODO_ITEM: string = 'SET_COMPLETED_TODO_ITEM';
+export const ADD_TODO_ITEM = 'ADD_TODO_ITEM';
+export const EDIT_LABEL_TODO_ITEM = 'EDIT_LABEL_TODO_ITEM';
+export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
+export const SET_COMPLETED_TODO_ITEM = 'SET_COMPLETED_TODO_ITEM';
 
 // action interfaces
 interface IonAddTodo {
@@ -36,6 +36,6 @@ export interface ItodoItem {
   completed: boolean
 }
 
-export interface Itodo {
+export interface Itodos {
   todos: ItodoItem[],
 }

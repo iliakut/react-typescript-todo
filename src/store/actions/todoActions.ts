@@ -1,12 +1,20 @@
 import * as typesTodo from '../constants/typesTodo';
 
+function getLiteral<T extends string>(arg: T): T {
+  /*
+  * сделает преборазование type в литеральный тип
+  * для дальнейшего соответствия payload и type в reducer
+  */
+  return arg
+}
+
 export const onAddTodo = (todoItem: typesTodo.ItodoItem) => ({
-  type: typesTodo.ADD_TODO_ITEM,
+  type: getLiteral(typesTodo.ADD_TODO_ITEM),
   payload: todoItem
 });
 
 export const onEditLabelTodo = (id: number, label: string) => ({
-  type: typesTodo.EDIT_LABEL_TODO_ITEM,
+  type: getLiteral(typesTodo.EDIT_LABEL_TODO_ITEM),
   payload: {
     id,
     label
@@ -14,15 +22,15 @@ export const onEditLabelTodo = (id: number, label: string) => ({
 });
 
 export const setCompletedTodoItem = (id: number, completed: boolean) => ({
-  type: typesTodo.SET_COMPLETED_TODO_ITEM,
+  type: getLiteral(typesTodo.SET_COMPLETED_TODO_ITEM),
   payload: {
     id,
-    completed
+    completed,
   }
 });
 
 export const onDeleteTodoItem = (id: number) => ({
-  type: typesTodo.DELETE_TODO_ITEM,
+  type: getLiteral(typesTodo.DELETE_TODO_ITEM),
   payload: {
     id
   }

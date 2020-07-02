@@ -1,20 +1,20 @@
-import * as types from "../constants/typesTodo";
+import * as constTypes from "../constants/typesTodo";
 import {actionTypes} from "../actions/todoActions";
-import {ItodoItem, Itodo} from "../constants/typesTodo";
+import {ItodoItem, Itodos} from "../constants/typesTodo";
 
-const initialState: types.Itodo = {
+const initialState: Itodos = {
   todos: [],
 };
 
-export default (state = initialState, action: actionTypes): Itodo => {
+export default (state = initialState, action: actionTypes): Itodos => {
   switch (action.type) {
-    case types.ADD_TODO_ITEM: {
+    case constTypes.ADD_TODO_ITEM: {
       return {
         ...state,
         todos: [...state.todos, action.payload]
       }
     }
-    case types.EDIT_LABEL_TODO_ITEM: {
+    case constTypes.EDIT_LABEL_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       if (index >= 0) {
         const newTodos = changeArrElementParamByIndex(
@@ -31,7 +31,7 @@ export default (state = initialState, action: actionTypes): Itodo => {
       }
       return state;
     }
-    case types.DELETE_TODO_ITEM: {
+    case constTypes.DELETE_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       const newTodos = [...state.todos];
       newTodos.splice(index, 1);
@@ -43,7 +43,7 @@ export default (state = initialState, action: actionTypes): Itodo => {
       }
       return state;
     }
-    case types.SET_COMPLETED_TODO_ITEM: {
+    case constTypes.SET_COMPLETED_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       if (index >= 0) {
         const item = state.todos[index];
