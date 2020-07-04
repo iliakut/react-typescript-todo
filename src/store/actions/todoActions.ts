@@ -43,8 +43,8 @@ export const onDeleteTodoItem = (id: number) => ({
   }
 } as const);
 
-export type actionTypes =
-  ReturnType<typeof onAddTodo> |
-  ReturnType<typeof onEditLabelTodo> |
-  ReturnType<typeof setCompletedTodoItem> |
-  ReturnType<typeof onDeleteTodoItem>
+// export type actionTypes =
+//   ReturnType<typeof onAddTodo> |
+//   ReturnType<typeof onEditLabelTodo> |
+//   ReturnType<typeof setCompletedTodoItem> |
+//   ReturnType<typeof onDeleteTodoItem>
