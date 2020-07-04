@@ -1,5 +1,5 @@
 import * as constTypes from "../constants/typesTodo";
-import {ActionTypes} from "../actions/actionTypes";
+import {TodoActionTypes} from "../actions/actionTypes";
 import {ItodoItem, Itodos} from "../constants/typesTodo";
 
 
@@ -7,7 +7,7 @@ const initialState: Itodos = {
   todos: [],
 };
 
-export default (state = initialState, action: ActionTypes): Itodos => {
+export default (state = initialState, action: TodoActionTypes): Itodos => {
   switch (action.type) {
     case constTypes.ADD_TODO_ITEM: {
       return {
