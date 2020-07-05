@@ -1,4 +1,4 @@
-import {ThunkAction} from "redux-thunk";
+import {ThunkAction } from "redux-thunk";
 import {Action} from "redux";
 import {StoreType} from "../store";
 
