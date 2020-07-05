@@ -6,15 +6,17 @@ import {ItodoItem, Itodos} from "../constants/typesTodo";
 const initialState: Itodos = {
   todos: [],
 };
-
-export default (state = initialState, action: TodoActionTypes): Itodos => {
+// TODO разобраться с any
+export default (state = initialState, action: any): Itodos => {
   switch (action.type) {
+
     case constTypes.ADD_TODO_ITEM: {
       return {
         ...state,
         todos: [...state.todos, action.payload]
       }
     }
+
     case constTypes.EDIT_LABEL_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       if (index >= 0) {
@@ -32,6 +34,7 @@ export default (state = initialState, action: TodoActionTypes): Itodos => {
       }
       return state;
     }
+
     case constTypes.DELETE_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       const newTodos = [...state.todos];
@@ -44,6 +47,7 @@ export default (state = initialState, action: TodoActionTypes): Itodos => {
       }
       return state;
     }
+
     case constTypes.SET_COMPLETED_TODO_ITEM: {
       const index = findIndex(action.payload.id, state.todos);
       if (index >= 0) {
@@ -64,6 +68,14 @@ export default (state = initialState, action: TodoActionTypes): Itodos => {
       }
       return state;
     }
+
+    case constTypes.REMOVE_COMPLETED: {
+      return {
+        ...state,
+        todos: state.todos.filter(item => !item.completed)
+      }
+    }
+
     default:
       return state;
   }
@@ -80,7 +92,6 @@ const changeArrElementParamByIndex = (
     newParamValue: boolean | string,
   ): ItodoItem[] => {
     const item = arr[index];
-    console.log(item)
     const newItem = {
       ...item,
       [paramName]: newParamValue

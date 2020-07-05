@@ -1,6 +1,5 @@
 import * as todoActions from "./todoActions";
 import * as filterActions from "./filterActions"
-
 /*
 * в файле создаются типы для actions
 * чтобы не перебирать руками и не прописывать для каждого экшена свой тип

@@ -1,4 +1,5 @@
 import * as typesTodo from '../constants/typesTodo';
+import {AppThunk} from "./thunkActionType";
 
 function getLiteral<T extends string>(arg: T): T {
   /*
@@ -42,6 +43,13 @@ export const onDeleteTodoItem = (id: number) => ({
     id
   }
 } as const);
+
+export const onRemoveCompleted = (timeout: number): AppThunk =>
+  (dispatch) => {
+  setTimeout(() => dispatch({
+    type: typesTodo.REMOVE_COMPLETED
+  }), timeout);
+};
 
 // export type actionTypes =
 //   ReturnType<typeof onAddTodo> |
