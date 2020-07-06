@@ -1,7 +1,7 @@
 import React from "react";
 import {PrimaryButton, Stack, Text} from "@fluentui/react";
 import useItemsLength from "../hooks/useItemsLength";
-import {onRemoveCompleted} from "../store/actions/todoActions";
+import {onRemoveCompletedThunk} from "../store/actions/todoActions";
 import {useDispatch} from "react-redux";
 
 const Footer = () => {
@@ -13,7 +13,7 @@ const Footer = () => {
       <Text>
         {length} items left
       </Text>
-      <PrimaryButton onClick={() => dispatch(onRemoveCompleted(1500))}>Delete completed</PrimaryButton>
+      <PrimaryButton onClick={() => dispatch(onRemoveCompletedThunk(1500))}>Delete completed</PrimaryButton>
     </Stack>
   );
 };

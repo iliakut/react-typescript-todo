@@ -1,4 +1,4 @@
-import * as todoActions from "./todoActions";
+import {actions as todoActions} from "./todoActions";
 import * as filterActions from "./filterActions"
 /*
 * в файле создаются типы для actions

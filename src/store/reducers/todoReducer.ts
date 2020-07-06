@@ -1,14 +1,13 @@
 import * as constTypes from "../constants/typesTodo";
 import {TodoActionTypes} from "../actions/actionTypes";
 import {ItodoItem, Itodos} from "../constants/typesTodo";
-import { actionTypes } from "../actions/todoActions";
 
 
 const initialState: Itodos = {
   todos: [],
 };
 // TODO разобраться с any
-export default (state = initialState, action: actionTypes): Itodos => {
+export default (state = initialState, action: TodoActionTypes): Itodos => {
   switch (action.type) {
 
     case constTypes.ADD_TODO_ITEM: {
@@ -70,12 +69,12 @@ export default (state = initialState, action: actionTypes): Itodos => {
       return state;
     }
 
-    // case constTypes.REMOVE_COMPLETED: {
-    //   return {
-    //     ...state,
-    //     todos: state.todos.filter(item => !item.completed)
-    //   }
-    // }
+    case constTypes.REMOVE_COMPLETED: {
+      return {
+        ...state,
+        todos: state.todos.filter(item => !item.completed)
+      }
+    }
 
     default:
       return state;

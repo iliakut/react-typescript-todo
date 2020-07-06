@@ -12,11 +12,10 @@ function getLiteral<T extends string>(arg: T): T {
   return arg
 }
 
-
 export const onAddTodo = (todoItem: typesTodo.ItodoItem) => ({
-  type: getLiteral(typesTodo.ADD_TODO_ITEM),
+  type: typesTodo.ADD_TODO_ITEM,
   payload: todoItem
-});
+} as const);
 
 export const onEditLabelTodo = (id: number, label: string) => ({
   type: typesTodo.EDIT_LABEL_TODO_ITEM,
@@ -46,23 +45,25 @@ export const onDeleteTodoItem = (id: number) => ({
   }
 } as const);
 
-// export const onRemoveCompleted = (timeout: number): AppThunk =>
-//   (dispatch) => {
-//   setTimeout(() => dispatch({
-//     type: typesTodo.REMOVE_COMPLETED
-//   }), timeout);
-// };
+export const onRemoveCompleted = () => ({
+  type: typesTodo.REMOVE_COMPLETED,
+} as const);
 
-export const onRemoveCompleted = (timeout: number): AppThunk =>
+export const onRemoveCompletedThunk = (timeout: number): AppThunk =>
   (dispatch) => {
-    setTimeout(() => dispatch({
-      type: typesTodo.REMOVE_COMPLETED
-    }), timeout);
+    setTimeout(() => dispatch(onRemoveCompleted()), timeout);
   };
 
+export const actions = {
+  onAddTodo,
+  onEditLabelTodo,
+  onDeleteTodoItem,
+  setCompletedTodoItem,
+  onRemoveCompleted
+};
 
-export type actionTypes =
-  ReturnType<typeof onAddTodo> |
-  ReturnType<typeof onEditLabelTodo> |
-  ReturnType<typeof setCompletedTodoItem> |
-  ReturnType<typeof onDeleteTodoItem>
+// export type actionTypes =
+//   ReturnType<typeof onAddTodo> |
+//   ReturnType<typeof onEditLabelTodo> |
+//   ReturnType<typeof setCompletedTodoItem> |
+//   ReturnType<typeof onDeleteTodoItem>
