@@ -4,6 +4,7 @@ export const EDIT_LABEL_TODO_ITEM = 'EDIT_LABEL_TODO_ITEM';
 export const DELETE_TODO_ITEM = 'DELETE_TODO_ITEM';
 export const SET_COMPLETED_TODO_ITEM = 'SET_COMPLETED_TODO_ITEM';
 export const REMOVE_COMPLETED = 'REMOVE_COMPLETED';
+export const TEST_ASYNC = 'TEST_ASYNC';
 
 // state types
 export interface ItodoItem {
@@ -14,4 +15,5 @@ export interface ItodoItem {
 
 export interface Itodos {
   todos: ItodoItem[],
+  test: string
 }

@@ -1,8 +1,6 @@
 import * as typesTodo from '../constants/typesTodo';
 import {AppThunk} from "./thunkActionType";
 
-type typesTodo = typeof typesTodo;
-
 function getLiteral<T extends string>(arg: T): T {
   /*
   * сделает преборазование type в литеральный тип
@@ -51,15 +49,23 @@ export const onRemoveCompleted = () => ({
 
 export const onRemoveCompletedThunk = (timeout: number): AppThunk =>
   (dispatch) => {
-    setTimeout(() => dispatch(onRemoveCompleted()), timeout);
-  };
+  setTimeout(() => dispatch(onRemoveCompleted()), timeout);
+};
+
+export const onAddTestName = (name: string) => ({
+  type: typesTodo.TEST_ASYNC,
+  payload: {
+    name
+  }
+} as const);
 
 export const actions = {
   onAddTodo,
   onEditLabelTodo,
   onDeleteTodoItem,
   setCompletedTodoItem,
-  onRemoveCompleted
+  onRemoveCompleted,
+  onAddTestName
 };
 
 // export type actionTypes =
@@ -67,3 +73,45 @@ export const actions = {
 //   ReturnType<typeof onEditLabelTodo> |
 //   ReturnType<typeof setCompletedTodoItem> |
 //   ReturnType<typeof onDeleteTodoItem>
+
+
+
+
+/*
+* пример асинхронного запроса
+*/
+
+// интерфейс HTTP запроса
+interface HttpResponse<T> extends Response {
+  parsedBody?: T;
+}
+
+// интерфейс получаемой сущности
+interface Data {
+  name: string;
+}
+
+// функция опертка для запросов
+async function api<T>(
+  request: RequestInfo
+): Promise<HttpResponse<T>> {
+  const response: HttpResponse<T> = await fetch(request);
+  response.parsedBody = await response.json();
+  return response;
+}
+
+export const testAsync = (id : number): AppThunk => async (dispatch) => {
+  // dispatch(fetchAsyncError(false));
+  // dispatch(fetchAsyncLoading(true));
+  try {
+    const response = await api<Data>(`https://swapi.dev/api/planets/${id}`);
+    const name = response.parsedBody?.name ?? '';
+    dispatch(onAddTestName(name));
+  }
+  catch (e) {
+    dispatch(onAddTestName('error getting name'));
+    // dispatch(fetchAsyncError(true))
+  }
+  // dispatch(fetchAsyncLoading(false));
+};
+

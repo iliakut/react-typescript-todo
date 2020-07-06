@@ -5,6 +5,7 @@ import {ItodoItem, Itodos} from "../constants/typesTodo";
 
 const initialState: Itodos = {
   todos: [],
+  test: ''
 };
 // TODO разобраться с any
 export default (state = initialState, action: TodoActionTypes): Itodos => {
@@ -73,6 +74,13 @@ export default (state = initialState, action: TodoActionTypes): Itodos => {
       return {
         ...state,
         todos: state.todos.filter(item => !item.completed)
+      }
+    }
+
+    case constTypes.TEST_ASYNC: {
+      return {
+        ...state,
+        test: action.payload.name
       }
     }
 
