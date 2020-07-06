@@ -91,8 +91,8 @@ interface Data {
   name: string;
 }
 
-// функция опертка для запросов
-async function api<T>(
+// функция обертка для запросов
+async function Api<T>(
   request: RequestInfo
 ): Promise<HttpResponse<T>> {
   const response: HttpResponse<T> = await fetch(request);
@@ -104,7 +104,7 @@ export const testAsync = (id : number): AppThunk => async (dispatch) => {
   // dispatch(fetchAsyncError(false));
   // dispatch(fetchAsyncLoading(true));
   try {
-    const response = await api<Data>(`https://swapi.dev/api/planets/${id}`);
+    const response = await Api<Data>(`https://swapi.dev/api/planets/${id}`);
     const name = response.parsedBody?.name ?? '';
     dispatch(onAddTestName(name));
   }
